@@ -159,12 +159,15 @@ typedef struct {
     /**
      * 日志输出广播
      * @param level 日志级别
+     * @param tv 日志时间
+     * @param module_name 模块名称
+     * @param thread_name 线程名称
      * @param file 源文件名
      * @param line 源文件行
      * @param function 源文件函数名
      * @param message 日志内容
      */
-    void (API_CALL *on_mk_log)(int level, const char *file, int line, const char *function, const char *message);
+    void (API_CALL *on_mk_log)(int level, struct timeval tv, const char *module_name, const char *thread_name, const char *file, int line, const char *function, const char *message);
 
 } mk_events;
 

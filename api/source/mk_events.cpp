@@ -157,7 +157,14 @@ API_EXPORT void API_CALL mk_events_listen(const mk_events *events){
         NoticeCenter::Instance().addListener(&s_tag, EventChannel::kBroadcastLogEvent,[](BroadcastLogEventArgs){
             if (s_events.on_mk_log) {
                 auto log = ctx->str();
-                s_events.on_mk_log((int) ctx->_level, ctx->_file.data(), ctx->_line, ctx->_function.data(), log.data());
+                s_events.on_mk_log((int) ctx->_level,
+                                   ctx->_tv,
+                                   ctx->_module_name.data(),
+                                   ctx->_thread_name.data(),
+                                   ctx->_file.data(),
+                                   ctx->_line,
+                                   ctx->_function.data(),
+                                   log.data());
             }
         });
     });
